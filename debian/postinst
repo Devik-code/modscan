@@ -1,0 +1,3 @@
+chown :www-data /var/lib/modscan/config.toml
+
+#DEBHELPER#

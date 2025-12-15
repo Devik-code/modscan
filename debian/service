@@ -1,0 +1,14 @@
+[Unit]
+Description=modscan service
+
+[Service]
+ExecStart=/usr/bin/modscan
+Restart=always
+RestartSec=10
+Environment="RUST_LOG=info"
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=modscan
+
+[Install]
+WantedBy=multi-user.target

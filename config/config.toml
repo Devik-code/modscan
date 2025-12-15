@@ -1,0 +1,36 @@
+log_dir_dev = "logs/"
+log_dir_prod = "/var/log/modscan/"
+
+# USB Device Configuration
+usb_device = "/dev/serial/by-id/usb-FTDI_USB-RS485_Cable_AV0KO7BN-if00-port0"
+
+# Modbus Serial Configuration
+[modbus]
+# Baudrate for Modbus communication
+baud_rate = 9600
+
+# Data bits (typically always 8 for Modbus RTU)
+data_bits = 8
+
+# Parity option: "None", "Even", or "Odd"
+parity = "N"
+
+# Stop bits: 1 or 2
+stop_bits = 1
+
+# Timeout in milliseconds for Modbus requests (100-200ms es suficiente para detectar dispositivos)
+timeout_ms = 50
+
+# Modbus Scan Configuration
+[scan]
+# Slave ID range for scanning
+scan_id = [1, 247]
+
+# Test register address to read for device detection
+test_register = 145
+
+# Number of registers to read from test_register
+register_count = 1
+
+# Delay between scan attempts in milliseconds (10-20ms es suficiente)
+scan_delay_ms = 10

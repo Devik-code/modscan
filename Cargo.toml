@@ -1,0 +1,41 @@
+[package]
+name = "modscan"
+version = "1.0.0-rc.1"
+edition = "2021"
+
+[dependencies]
+anyhow = "1"
+config = { version = "0.14.1", features = ["toml"] }
+serde = "1.0.214"
+serde_derive = "1.0.214"
+tokio = { version = "1.40.0", features = ["full"] }
+tokio-modbus = { version = "0.15.0", default-features = false, features = ["rtu"] }
+tokio-serial = "5.4.4"
+tracing = "0.1.40"
+tracing-appender = "0.2.3"
+tracing-subscriber = { version = "0.3.18", features = ["local-time", "env-filter"] }
+indicatif = "0.17.8"
+
+[package.metadata.deb]
+name = "modscan"
+maintainer = "Victor Riquelme <victor.riquelme@innovex.cl>"
+copyright = "2025, Victor Riquelme <victor.riquelme@innovex.cl>"
+depends = ""
+conf-files = ["/var/lib/modscan/config.toml"]
+assets = [
+    [
+        "target/release/modscan",
+        "usr/bin/",
+        "755",
+    ],
+    [
+        "config/config.toml",
+        "var/lib/modscan/",
+        "664",
+    ],
+]
+maintainer-scripts = "debian/"
+systemd-units = { enable = true }
+
+[workspace.metadata.cross.target.arm-unknown-linux-gnueabihf]
+image = "ghcr.io/cross-rs/arm-unknown-linux-gnueabihf:0.2.4"
